@@ -12,7 +12,7 @@ if test $(which brew)
 then
   brew update
   brew bundle --global
-  brew cask cleanup
+  brew cleanup
 else
   echo "  Installing Homebrew for you."
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

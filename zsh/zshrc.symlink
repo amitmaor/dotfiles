@@ -1,75 +1,47 @@
-# shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles
+#!/bin/zsh
+# shortcut to this dotfiles path is $DOTFILES
+export DOTFILES="$HOME/.dotfiles"
 
-######################################## Antigen ########################################
+# your project folder that we can `c [tab]` to
+export PROJECTS="$HOME/Code"
 
-source "$HOME/.antigen/antigen.zsh"
-
-# Load the oh-my-zsh
-antigen use oh-my-zsh
-
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle autojump
-antigen bundle extract
-antigen bundle osx
-antigen bundle pod
-antigen bundle ruby
-antigen bundle rvm
-antigen bundle sudo
-antigen bundle svn-fast-info
-antigen bundle web-search
-
-# Remember aliases
-antigen bundle djui/alias-tips
-
-# Automatically update antigen
-antigen bundle unixorn/autoupdate-antigen.zshplugin
-
-# ZSH completions
-antigen bundle zsh-users/zsh-completions
-
-# Theme
-antigen theme tylerwolf/zsh-theme twolf
-# antigen theme pygmalion
-
-# Done
-antigen apply
-
-######################################## Dotfiles #######################################
-
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-if [[ -a ~/.localrc ]]
-then
-  source ~/.localrc
-fi
+# your default editor
+export EDITOR='vim'
+export VEDITOR='code'
 
 # all of our zsh files
 typeset -U config_files
-config_files=($ZSH/**/*.zsh)
+config_files=($DOTFILES/*/*.zsh)
 
 # load the path files
-for file in ${(M)config_files:#*/path.zsh}
-do
-  source $file
+for file in ${(M)config_files:#*/path.zsh}; do
+  source "$file"
 done
+
+# load antibody plugins
+source ~/.zsh_plugins.sh
 
 # load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
-do
-  source $file
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
+  source "$file"
 done
 
-# initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
 
 # load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}
-do
-  source $file
+for file in ${(M)config_files:#*/completion.zsh}; do
+  source "$file"
 done
 
-unset config_files
+unset config_files updated_at
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# use .localrc for SUPER SECRET CRAP that you don't
+# want in your public, versioned repo.
+# shellcheck disable=SC1090
+[ -f ~/.localrc ] && . ~/.localrc

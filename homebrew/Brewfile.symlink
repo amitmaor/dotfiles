@@ -1,15 +1,5 @@
-cask_args appdir: '/Applications'
-
-##
-# Taps
-##
-
-tap 'caskroom/cask'
-tap 'homebrew/bundle'
-
-##
-# Formulae
-##
+tap "homebrew/bundle"
+tap "homebrew/core"
 
 # Replace outdated system libraries
 brew 'git'
@@ -18,56 +8,7 @@ brew 'zsh'
 
 # Productivity
 brew 'ack'
-brew 'autojump'
 brew 'coreutils'
 brew 'findutils'
-# brew 'cowsay'
-
-###
-## Casks
-###
-#
-## Core
-#cask '1password'
-#cask 'alfred'
-#cask 'firefox'
-#cask 'google-chrome'
-#cask 'iterm2'
-#
-## Beer
-#cask 'beersmith2'
-#
-## Communication
-#cask 'skype'
-#cask 'slack'
-#
-## Development
-#cask 'appcode'
-#cask 'atom'
-#cask 'balsamiq-mockups'
-#cask 'colorsnapper'
-#cask 'dash'
-#cask 'intellij-idea'
-#cask 'postgres'
-#cask 'sourcetree'
-#cask 'virtualbox'
-#cask 'vagrant'
-#cask 'vagrant-manager'
-#cask 'webstorm'
-#
-## Games
-#cask 'battle-net'
-#cask 'steam'
-#
-## Media
-#cask 'spotify'
-#cask 'vlc'
-#
-## Productivity
-#cask 'caffeine'
-#cask 'dropbox'
-#
-## Utilities
-#cask 'appzapper'
-#cask 'the-unarchiver'
-##cask 'utorrent'
+brew 'cowsay'
+brew 'jenv'
