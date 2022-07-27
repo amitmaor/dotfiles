@@ -45,15 +45,6 @@ echo "  › Disable the 'Are you sure you want to open this application?' dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
-echo "  › Set dark interface style"
-defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
-
-echo "  › Set graphite appearance"
-defaults write NSGlobalDomain AppleAquaColorVariant -int 6
-
-echo "  › Set graphite highlight color"
-defaults write NSGlobalDomain AppleHighlightColor -string "0.847059 0.847059 0.862745"
-
 echo "  › Show battery percent"
 defaults write com.apple.menuextra.battery ShowPercent -bool true
 
