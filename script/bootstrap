@@ -64,6 +64,12 @@ setup_gitconfig() {
 	success 'gitconfig'
 }
 
+setup_homebrew() {
+	info 'setup homebrew'
+	$DOTFILES/homebrew/install.sh
+	success 'homebrew'
+}
+
 link_file() {
 	if [ -e "$2" ]; then
 		if [ "$(readlink "$2")" = "$1" ]; then
@@ -96,6 +102,7 @@ find_zsh() {
 }
 
 setup_gitconfig
+setup_homebrew
 install_dotfiles
 
 info "installing dependencies"

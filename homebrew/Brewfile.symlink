@@ -9,6 +9,8 @@ brew 'zsh'
 # Productivity
 brew 'ack'
 brew 'coreutils'
+brew 'diff-so-fancy'
 brew 'findutils'
 brew 'cowsay'
 brew 'jenv'
+

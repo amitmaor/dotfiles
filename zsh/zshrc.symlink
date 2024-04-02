@@ -9,6 +9,12 @@ export PROJECTS="$HOME/Code"
 export EDITOR='vim'
 export VEDITOR='code'
 
+# env vars
+if [[ -a ~/.env-vars ]]
+then
+  source ~/.env-vars
+fi
+
 # all of our zsh files
 typeset -U config_files
 config_files=($DOTFILES/*/*.zsh)
